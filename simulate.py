@@ -10,26 +10,9 @@ def runsim(monitors, neuron_model, orn_rates,
            prerun, simtime, dt, beeid=0,
            inh_delay=0*ms, inh_struct=None, recvars=None, rv_timestep=500, mhook=None, report=False):
     '''
-    wi          : weight on the LN-PN connection. we is adjusted to wi by regression function. for wi=0 no LNs will be included.
-    we          : the weight for the ORN-PN connection. if we == None then regression will be used
-    inh_struct  : False for all2lall connection; True for connectivity matrix defined by fW
-    Winh        : weight matrix for the LN-PN connection
-    odorN       : number of the odor in database to use as input (tuning )
-    fstim       : function returning the input tuning. normalizatiion?!
-    spikemon    : False - return spike counts only, True return mon
-
-    calculate when stimulation starts for each glumerolus
-    stim_start_jittered is a vector containing the jittered stim start tims
-    orn_activation returns a booolean vector of stim presence given time t
-
-    Poisson Group is created with ORNperGlu*N_glu (=N_ORN) units
-    input consists of a baseline componenent (r0_bg) equal for all units and a tuned component.
-    The tuning for each Glu is given in the rates_stim vector,
-    ORNperGlu units hence share the same rate function
-    
-    Then connect ORNs to PNs such that ORNperGlu ORNs representing input to one Glu connects to 1 PN
-    repeat for every Glu, using connect_full
-    connects ORNs to LNs in the same way if inhibition is activated    
+    ## ToDo documentation ##
+    Connect ORNs to PNs such that ORNperGlu ORNs representing input to one Glu connects to 1 PN
+    repeat for every Glu, using connect_full. Connects ORNs to LNs in the same way.
     '''
     np.random.seed() #needed for numpy/brian when runing parallel sims
     define_default_clock(dt=dt)    
